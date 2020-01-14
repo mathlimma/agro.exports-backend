@@ -6,7 +6,7 @@ class Database {
   }
 
   init() {
-    this.connection = mongoose.connect('mongodb://localhost/agro', {
+    this.connection = mongoose.connect('mongodb://localhost/agroExports', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
