@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import AuthController from './app/controllers/AuthController';
 
 class Routes {
   constructor() {
@@ -11,7 +12,7 @@ class Routes {
   middlewares() {}
 
   routes() {
-    this.router.get('/', (req, res) => res.json({ Hello: 'World' }));
+    this.router.post('/auth', AuthController.store);
   }
 }
 
