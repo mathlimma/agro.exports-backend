@@ -20,11 +20,9 @@ const UserSchema = new Schema(
     },
     facebook_id: {
       type: String,
-      unique: true,
     },
     google_id: {
       type: String,
-      unique: true,
     },
   },
   { timestamps: true }

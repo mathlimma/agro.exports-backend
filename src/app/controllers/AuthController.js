@@ -19,7 +19,9 @@ class AuthController {
         const emailExist = await User.findOne({ email });
 
         if (emailExist) {
-          return res.status(400).json({ error: 'User used google to signIn' });
+          return res.status(400).json({
+            error: 'User used google to signIn or facebook_id invalid',
+          });
         }
 
         const newUser = await User.create({
@@ -42,7 +44,9 @@ class AuthController {
       const emailExist = await User.findOne({ email });
 
       if (emailExist) {
-        return res.status(400).json({ error: 'User used facebook to signIn' });
+        return res
+          .status(400)
+          .json({ error: 'User used facebook to signIn or google_id invalid' });
       }
 
       const newUser = await User.create({
