@@ -16,7 +16,7 @@ class AuthController {
 
       // if first login -> register user
       if (!user) {
-        const emailExist = await User.findOne({ email });
+        const emailExist = await User.finddOne({ email });
 
         if (emailExist) {
           return res.status(400).json({
