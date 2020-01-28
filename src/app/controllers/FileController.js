@@ -16,7 +16,7 @@ class FileController {
 
       return res.json({ url: file.url });
     }
-    console.log(req.type);
+
     const producer = await Producer.findById(req.userId);
     producer.avatar_id = file._id;
     await producer.save();
