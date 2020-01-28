@@ -3,7 +3,41 @@ import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Auth from '../../config/auth';
 
-const EceSchema = new Schema({}, { timestamps: true });
+const EceSchema = new Schema(
+  {
+    name: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    email: {
+      type: String,
+      trim: true,
+      unique: true,
+      required: true,
+    },
+    city: {
+      type: String,
+    },
+    cnpj: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      trim: true,
+      required: true,
+      minlength: 8,
+    },
+    avatar_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'File',
+      default: null,
+    },
+  },
+  { timestamps: true }
+);
 
 // hooks == triggers
 EceSchema.pre('save', async function(next) {
@@ -17,7 +51,9 @@ EceSchema.methods = {
     return bcryptjs.compare(password, this.password);
   },
   generateToken() {
-    return jwt.sign({ id: this._id }, Auth.secret, { expiresIn: '7d' });
+    return jwt.sign({ id: this._id, type: 'Ece' }, Auth.secret, {
+      expiresIn: '7d',
+    });
   },
 };
 

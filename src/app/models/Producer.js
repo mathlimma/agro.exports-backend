@@ -3,7 +3,43 @@ import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Auth from '../../config/auth';
 
-const ProducerSchema = new Schema({}, { timestamps: true });
+const ProducerSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      trim: true,
+      unique: true,
+      required: true,
+    },
+    city: {
+      type: String,
+    },
+    cpf: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    age: {
+      type: String,
+    },
+    password: {
+      type: String,
+      trim: true,
+      required: true,
+      minlength: 8,
+    },
+    avatar_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'File',
+      default: null,
+    },
+  },
+  { timestamps: true }
+);
 
 // hooks == triggers
 ProducerSchema.pre('save', async function(next) {
@@ -17,7 +53,9 @@ ProducerSchema.methods = {
     return bcryptjs.compare(password, this.password);
   },
   generateToken() {
-    return jwt.sign({ id: this._id }, Auth.secret, { expiresIn: '7d' });
+    return jwt.sign({ id: this._id, type: 'Producer' }, Auth.secret, {
+      expiresIn: '7d',
+    });
   },
 };
 
