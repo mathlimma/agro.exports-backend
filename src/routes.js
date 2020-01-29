@@ -5,7 +5,10 @@ import multerConfig from './config/multer';
 
 import ProducerAuthController from './app/controllers/ProducerAuthController';
 import EceAuthController from './app/controllers/EceAuthController';
-import FileController from './app/controllers/FileController';
+import AvatarController from './app/controllers/AvatarController';
+import SupplyPhotoController from './app/controllers/SupplyPhotoController';
+import SupplyController from './app/controllers/SupplyController';
+import ProductController from './app/controllers/ProductController';
 
 const upload = multer(multerConfig);
 
@@ -30,7 +33,15 @@ class Routes {
   }
 
   routes() {
-    this.router.put('/avatar', upload.single('file'), FileController.store);
+    this.router.put('/avatar', upload.single('Avatar'), AvatarController.store);
+    this.router.post(
+      '/supply/:id/photo',
+      upload.array('file', 10),
+      SupplyPhotoController.store
+    );
+    this.router.post('/product', ProductController.store);
+    this.router.get('/product', ProductController.index);
+    this.router.post('/supply', SupplyController.store);
   }
 }
 

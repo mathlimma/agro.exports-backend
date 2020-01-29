@@ -2,7 +2,7 @@ import File from '../models/File';
 import Ece from '../models/Ece';
 import Producer from '../models/Producer';
 
-class FileController {
+class AvatarController {
   async store(req, res) {
     const file = await File.create({
       name: req.file.filename,
@@ -25,4 +25,4 @@ class FileController {
   }
 }
 
-export default new FileController();
+export default new AvatarController();

@@ -37,6 +37,7 @@ const ProducerSchema = new Schema(
       ref: 'File',
       default: null,
     },
+    products_id: [{ type: Schema.Types.ObjectId, ref: 'Products' }],
   },
   { timestamps: true }
 );

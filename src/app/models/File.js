@@ -14,4 +14,7 @@ FileSchema.virtual('url').get(function() {
   return `${process.env.APP_URL}/files/${this.name}`;
 });
 
+FileSchema.set('toObject', { virtuals: true });
+FileSchema.set('toJSON', { virtuals: true });
+
 export default model('File', FileSchema);

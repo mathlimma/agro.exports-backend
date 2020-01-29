@@ -13,13 +13,22 @@ class ProducerAuthController {
 
   async signin(req, res) {
     const { email, password } = req.body;
-    const producer = await Producer.findOne({ email });
+    const producer = await Producer.findOne({ email }).populate('avatar_id');
 
     if (!producer) res.status(400).json({ error: 'email não cadastrado' });
     if (!(await producer.compareHash(password)))
       res.status(400).json({ error: 'senha incorreta' });
 
-    return res.json({ producer, token: producer.generateToken() });
+    return res.json({
+      producer: {
+        _id: producer._id,
+        name: producer.name,
+        email: producer.email,
+        cpf: producer.cpf,
+        avatar_url: producer.avatar_id ? producer.avatar_id.url : null,
+      },
+      token: producer.generateToken(),
+    });
   }
 }
 
