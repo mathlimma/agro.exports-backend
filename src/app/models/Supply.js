@@ -1,5 +1,4 @@
 import { Schema, model } from 'mongoose';
-import AgroMatch from '../../agromatch';
 
 const SupplySchema = new Schema(
   {
@@ -43,10 +42,5 @@ const SupplySchema = new Schema(
   },
   { timestamps: true }
 );
-
-SupplySchema.pre('save', function(next) {
-  new AgroMatch(this);
-  next();
-});
 
 export default model('Supply', SupplySchema);

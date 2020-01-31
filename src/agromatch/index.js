@@ -1,7 +1,5 @@
-class AgroMatch {
-  constructor(supply) {
-    this.supply = supply;
-  }
-}
+import AgroMatchDemand from './demand';
 
-export default AgroMatch;
+export default function agroMatchInitDemand(demand) {
+  const agromatch = new AgroMatchDemand(demand);
+}
