@@ -4,7 +4,7 @@ import authMiddleware from './app/middlewares/auth';
 import multerConfig from './config/multer';
 
 import ProducerAuthController from './app/controllers/ProducerAuthController';
-import EceAuthController from './app/controllers/EceAuthController';
+import CustomerAuthController from './app/controllers/CustomerAuthController';
 import AvatarController from './app/controllers/AvatarController';
 import SupplyPhotoController from './app/controllers/SupplyPhotoController';
 import SupplyController from './app/controllers/SupplyController';
@@ -26,8 +26,8 @@ class Routes {
     this.router.post('/producer/signup', ProducerAuthController.signup);
     this.router.post('/producer/signin', ProducerAuthController.signin);
 
-    this.router.post('/ece/signup', EceAuthController.signup);
-    this.router.post('/ece/signin', EceAuthController.signin);
+    this.router.post('/customer/signup', CustomerAuthController.signup);
+    this.router.post('/customer/signin', CustomerAuthController.signin);
   }
 
   middlewares() {

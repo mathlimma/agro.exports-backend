@@ -1,33 +1,19 @@
-import Supply from '../../app/models/Supply';
+import Demand from '../../app/models/Demand';
 
 class AgroMatchDemand {
-  constructor(demand) {
-    this.demand = demand;
-    this.supplies = null;
+  constructor(supply) {
+    this.supply = supply;
+    this.demands = null;
   }
 
   async metrics() {
     // query do produto
     // percorre toda a collection de supply onde o product_id === this.demand.product_id && closed === false
-    this.supplies = await this.product();
-
-    for (const priority of this.demand.priority) {
-      switch (priority) {
-        case 'price':
-          this.supplies = await this.price();
-          break;
-        case 'location':
-          break;
-        case 'amount':
-          break;
-
-        default:
-      }
-    }
+    this.demands = await this.product();
   }
 
   async product() {
-    const products = await Supply.find({
+    const products = await Demand.find({
       $and: [{ product_id: this.demand.product_id }, { closed: false }],
     }).sort('-createdAt');
 
@@ -35,7 +21,7 @@ class AgroMatchDemand {
   }
 
   async price() {
-    const prices = await this.supplies
+    const prices = await this.demands
       .find({
         price: { $lte: this.demand.max_price },
       })
@@ -50,7 +36,7 @@ class AgroMatchDemand {
 
   finish() {
     // Apenas o id que interessa
-    this.supplies = this.supplies.map(({ _id }) => _id);
+    this.supplies = this.demands.map(({ _id }) => _id);
   }
 }
 
