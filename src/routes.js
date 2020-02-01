@@ -9,6 +9,7 @@ import AvatarController from './app/controllers/AvatarController';
 import SupplyPhotoController from './app/controllers/SupplyPhotoController';
 import SupplyController from './app/controllers/SupplyController';
 import ProductController from './app/controllers/ProductController';
+import DemandController from './app/controllers/DemandController';
 
 const upload = multer(multerConfig);
 
@@ -33,7 +34,7 @@ class Routes {
   }
 
   routes() {
-    this.router.put('/avatar', upload.single('Avatar'), AvatarController.store);
+    this.router.put('/avatar', upload.single('file'), AvatarController.store);
     this.router.post(
       '/supply/:id/photo',
       upload.array('file', 10),
@@ -42,6 +43,8 @@ class Routes {
     this.router.post('/product', ProductController.store);
     this.router.get('/product', ProductController.index);
     this.router.post('/supply', SupplyController.store);
+    this.router.post('/demand', DemandController.store);
+    this.router.put('/demand/:id', DemandController.update);
   }
 }
 

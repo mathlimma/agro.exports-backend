@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import agroMatchInitDemand from '../../agromatch';
 
 const DemandSchema = new Schema(
   {
@@ -12,7 +13,11 @@ const DemandSchema = new Schema(
       ref: 'Product',
       required: true,
     },
-    intended_price: {
+    price: {
+      type: Number,
+      required: true,
+    },
+    max_price: {
       type: Number,
       required: true,
     },
@@ -28,8 +33,28 @@ const DemandSchema = new Schema(
       type: Number,
       required: true,
     },
+    max_distance_km: {
+      type: Number,
+      required: true,
+    },
+    priority: {
+      type: [String],
+      required: true,
+    },
+    closed: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
+
+DemandSchema.post('findOneAndUpdate', function(demand) {
+  agroMatchInitDemand(demand);
+});
+
+DemandSchema.post('save', function(demand) {
+  agroMatchInitDemand(demand);
+});
 
 export default model('Demand', DemandSchema);

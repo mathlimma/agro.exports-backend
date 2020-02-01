@@ -6,7 +6,6 @@ class AvatarController {
   async store(req, res) {
     const file = await File.create({
       name: req.file.filename,
-      path: req.file.path,
     });
 
     if (req.type === 'Ece') {

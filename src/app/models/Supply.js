@@ -19,11 +19,7 @@ const SupplySchema = new Schema(
         required: true,
       },
     ],
-    min_price: {
-      type: Number,
-      required: true,
-    },
-    intended_price: {
+    price: {
       type: Number,
       required: true,
     },
@@ -38,6 +34,10 @@ const SupplySchema = new Schema(
     longitude: {
       type: Number,
       required: true,
+    },
+    closed: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }

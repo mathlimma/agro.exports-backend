@@ -9,7 +9,6 @@ class SupplyPhotoController {
     for (const upload of req.files) {
       const file = await File.create({
         name: upload.filename,
-        path: upload.path,
       });
       supply.photos.push(file._id);
       await supply.save();
