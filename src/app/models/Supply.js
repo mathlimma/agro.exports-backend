@@ -1,5 +1,4 @@
 import { Schema, model } from 'mongoose';
-import agroMatchInitSupply from '../../agromatch';
 
 const SupplySchema = new Schema(
   {
@@ -17,30 +16,31 @@ const SupplySchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: 'File',
+        required: true,
       },
     ],
+    price: {
+      type: Number,
+      required: true,
+    },
+    kg_amount: {
+      type: Number,
+      required: true,
+    },
     latitude: {
       type: Number,
+      required: true,
     },
     longitude: {
       type: Number,
+      required: true,
     },
-    active: {
+    closed: {
       type: Boolean,
       default: false,
     },
   },
   { timestamps: true }
 );
-
-async function trigger(supply) {
-  // validate com yup
-  const agroMatch = await agroMatchInitSupply(supply);
-  console.log(agroMatch.demands);
-}
-
-SupplySchema.post('findOneAndUpdate', trigger);
-
-SupplySchema.post('save', trigger);
 
 export default model('Supply', SupplySchema);

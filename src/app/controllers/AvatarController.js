@@ -1,5 +1,5 @@
 import File from '../models/File';
-import Customer from '../models/Customer';
+import Ece from '../models/Ece';
 import Producer from '../models/Producer';
 
 class AvatarController {
@@ -8,10 +8,10 @@ class AvatarController {
       name: req.file.filename,
     });
 
-    if (req.type === 'Customer') {
-      const customer = await Customer.findById(req.userId);
-      customer.avatar_id = file._id;
-      await customer.save();
+    if (req.type === 'Ece') {
+      const ece = await Ece.findById(req.userId);
+      ece.avatar_id = file._id;
+      await ece.save();
 
       return res.json({ url: file.url });
     }

@@ -3,7 +3,7 @@ import Producer from '../models/Producer';
 class ProducersProductController {
   async store(req, res) {
     const { product_id } = req.params;
-    if (req.type === 'Customer')
+    if (req.type === 'Ece')
       return res.status(401).send({
         error: 'Apenas produtores podem ter seus produtos cadastrados',
       });
@@ -16,7 +16,7 @@ class ProducersProductController {
   }
 
   async index(req, res) {
-    if (req.type === 'Customer')
+    if (req.type === 'Ece')
       return res.status(401).send({
         error: 'Apenas produtores podem ter seus produtos cadastrados',
       });

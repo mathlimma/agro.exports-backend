@@ -3,7 +3,7 @@ import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Auth from '../../config/auth';
 
-const CustomerSchema = new Schema(
+const EceSchema = new Schema(
   {
     name: {
       type: String,
@@ -40,21 +40,21 @@ const CustomerSchema = new Schema(
 );
 
 // hooks == triggers
-CustomerSchema.pre('save', async function(next) {
+EceSchema.pre('save', async function(next) {
   if (!this.isModified('password')) next();
   this.password = await bcryptjs.hash(this.password, 8);
 });
 
 // methods
-CustomerSchema.methods = {
+EceSchema.methods = {
   compareHash(password) {
     return bcryptjs.compare(password, this.password);
   },
   generateToken() {
-    return jwt.sign({ id: this._id, type: 'Customer' }, Auth.secret, {
+    return jwt.sign({ id: this._id, type: 'Ece' }, Auth.secret, {
       expiresIn: '7d',
     });
   },
 };
 
-export default model('Customer', CustomerSchema);
+export default model('Ece', EceSchema);
