@@ -55,7 +55,7 @@ const DemandSchema = new Schema(
 
 async function trigger(demand) {
   const agroMatch = await agroMatchInitDemand(demand);
-  console.log(agroMatch);
+  console.log(agroMatch.supplies);
 }
 
 DemandSchema.post('findOneAndUpdate', trigger);

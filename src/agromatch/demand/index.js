@@ -2,13 +2,8 @@ import Supply from '../../app/models/Supply';
 
 class AgroMatchDemand {
   constructor(demand) {
-    return (async () => {
-      this.demand = demand;
-      this.supplies = null;
-      await this.metrics();
-
-      return this;
-    })();
+    this.demand = demand;
+    this.supplies = null;
   }
 
   async metrics() {
@@ -53,7 +48,10 @@ class AgroMatchDemand {
 
   async amount() {}
 
-  async finish() {}
+  finish() {
+    // Apenas o id que interessa
+    this.supplies = this.supplies.map(({ _id }) => _id);
+  }
 }
 
 export default AgroMatchDemand;

@@ -1,7 +1,11 @@
 import AgroMatchDemand from './demand';
 
 export default async function agroMatchInitDemand(demand) {
-  const agromatch = await new AgroMatchDemand(demand);
+  // Instanciando o agromatch
+  const agromatch = new AgroMatchDemand(demand);
+  // Executando os metodos necessarios
+  await agromatch.metrics();
+  agromatch.finish();
 
   return agromatch;
 }
