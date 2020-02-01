@@ -10,6 +10,7 @@ import SupplyPhotoController from './app/controllers/SupplyPhotoController';
 import SupplyController from './app/controllers/SupplyController';
 import ProductController from './app/controllers/ProductController';
 import DemandController from './app/controllers/DemandController';
+import ProducersProductController from './app/controllers/ProducersProductController';
 
 const upload = multer(multerConfig);
 
@@ -45,6 +46,11 @@ class Routes {
     this.router.post('/supply', SupplyController.store);
     this.router.post('/demand', DemandController.store);
     this.router.put('/demand/:id', DemandController.update);
+    this.router.post(
+      '/producer/product/:product_id',
+      ProducersProductController.store
+    );
+    this.router.get('/producer/product', ProducersProductController.index);
   }
 }
 

@@ -28,7 +28,7 @@ class AgroMatchDemand {
 
   async product() {
     const products = await Supply.find({
-      product_id: this.demand.product_id,
+      $and: [{ product_id: this.demand.product_id }, { closed: false }],
     }).sort('-createdAt');
 
     return products;
