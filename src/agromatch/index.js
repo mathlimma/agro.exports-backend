@@ -1,5 +1,7 @@
 import AgroMatchDemand from './demand';
 
-export default function agroMatchInitDemand(demand) {
-  const agromatch = new AgroMatchDemand(demand);
+export default async function agroMatchInitDemand(demand) {
+  const agromatch = await new AgroMatchDemand(demand);
+
+  return agromatch;
 }

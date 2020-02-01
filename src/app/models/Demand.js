@@ -45,16 +45,21 @@ const DemandSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    supplies_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'Supply',
+    },
   },
   { timestamps: true }
 );
 
-DemandSchema.post('findOneAndUpdate', function(demand) {
-  agroMatchInitDemand(demand);
-});
+async function trigger(demand) {
+  const agroMatch = await agroMatchInitDemand(demand);
+  console.log(agroMatch);
+}
 
-DemandSchema.post('save', function(demand) {
-  agroMatchInitDemand(demand);
-});
+DemandSchema.post('findOneAndUpdate', trigger);
+
+DemandSchema.post('save', trigger);
 
 export default model('Demand', DemandSchema);
