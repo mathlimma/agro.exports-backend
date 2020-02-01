@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose';
 import agroMatchInitDemand from '../../agromatch';
+import PointSchema from './utils/PointSchema';
 
 const DemandSchema = new Schema(
   {
@@ -17,38 +18,28 @@ const DemandSchema = new Schema(
       type: Number,
       required: true,
     },
-    max_price: {
-      type: Number,
-      required: true,
-    },
     kg_amount: {
       type: Number,
       required: true,
     },
-    latitude: {
-      type: Number,
-      required: true,
-    },
-    longitude: {
-      type: Number,
-      required: true,
+    location: {
+      type: PointSchema,
+      index: '2dsphere',
     },
     max_distance_km: {
       type: Number,
-      required: true,
-    },
-    priority: {
-      type: [String],
       required: true,
     },
     closed: {
       type: Boolean,
       default: false,
     },
-    supplies_id: {
-      type: Schema.Types.ObjectId,
-      ref: 'Supply',
-    },
+    supplies_id: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Supply',
+      },
+    ],
   },
   { timestamps: true }
 );

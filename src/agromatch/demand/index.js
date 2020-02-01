@@ -9,44 +9,25 @@ class AgroMatchDemand {
   async metrics() {
     // query do produto
     // percorre toda a collection de supply onde o product_id === this.demand.product_id && closed === false
-    this.supplies = await this.product();
-
-    for (const priority of this.demand.priority) {
-      switch (priority) {
-        case 'price':
-          this.supplies = await this.price();
-          break;
-        case 'location':
-          break;
-        case 'amount':
-          break;
-
-        default:
-      }
-    }
+    await this.run();
+    this.finish();
   }
 
-  async product() {
-    const products = await Supply.find({
-      $and: [{ product_id: this.demand.product_id }, { closed: false }],
-    }).sort('-createdAt');
-
-    return products;
+  async run() {
+    this.supplies = await Supply.find({
+      $and: [{ product_id: this.demand.product_id }, { active: true }],
+      price: { $lte: this.demand.price },
+      location: {
+        $near: {
+          $geometry: {
+            type: 'Point',
+            coordinates: [this.demand.longitude, this.demand.latitude],
+          },
+          $maxDistance: this.demand.max_distance_km * 1000,
+        },
+      },
+    }).sort({ price: -1, updatedAt: -1 });
   }
-
-  async price() {
-    const prices = await this.supplies
-      .find({
-        price: { $lte: this.demand.max_price },
-      })
-      .sort('-price');
-
-    return prices;
-  }
-
-  async location() {}
-
-  async amount() {}
 
   finish() {
     // Apenas o id que interessa

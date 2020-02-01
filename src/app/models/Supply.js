@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import PointSchema from './utils/PointSchema';
 
 const SupplySchema = new Schema(
   {
@@ -23,19 +24,14 @@ const SupplySchema = new Schema(
       type: Number,
       required: true,
     },
-    kg_amount: {
-      type: Number,
-      required: true,
+    description: {
+      type: String,
     },
-    latitude: {
-      type: Number,
-      required: true,
+    location: {
+      type: PointSchema,
+      index: '2dsphere',
     },
-    longitude: {
-      type: Number,
-      required: true,
-    },
-    closed: {
+    active: {
       type: Boolean,
       default: false,
     },
