@@ -21,11 +21,11 @@ class DemandController {
         .json({ error: 'Apenas Eces podem criar uma demanda' });
 
     const demand = await Demand.create({
-      product_id,
       price,
       kg_amount,
       max_distance_km,
       location,
+      product_id,
       ece_id: req.userId,
     });
 

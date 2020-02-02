@@ -21,9 +21,12 @@ class AgroMatchDemand {
         $near: {
           $geometry: {
             type: 'Point',
-            coordinates: [this.demand.longitude, this.demand.latitude],
+            coordinates: [
+              this.demand.location.coordinates[0],
+              this.demand.location.coordinates[1],
+            ],
           },
-          $maxDistance: this.demand.max_distance_km * 1000,
+          $maxDistance: Number(this.demand.max_distance_km * 1000),
         },
       },
     }).sort({ price: -1, updatedAt: -1 });
