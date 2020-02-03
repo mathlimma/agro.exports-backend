@@ -6,6 +6,20 @@ class DemandSuppliesController {
       {
         path: 'supplies_id',
         model: 'Supply',
+        populate: [
+          {
+            path: 'producer_id',
+            model: 'Producer',
+            populate: {
+              path: 'avatar_id',
+              model: 'File',
+            },
+          },
+          {
+            path: 'photos',
+            model: 'File',
+          },
+        ],
       }
     );
 

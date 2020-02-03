@@ -65,7 +65,16 @@ class SupplyController {
   }
 
   async show(req, res) {
-    const supply = await Supply.findById(req.params.id);
+    const supply = await Supply.findById(req.params.id)
+      .populate({
+        path: 'producer_id',
+        model: 'Producer',
+        populate: {
+          path: 'avatar_id',
+          model: 'File',
+        },
+      })
+      .populate({ path: 'photos', model: 'File' });
 
     return res.json(supply);
   }
