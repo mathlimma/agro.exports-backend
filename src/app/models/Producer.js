@@ -15,6 +15,9 @@ const ProducerSchema = new Schema(
       unique: true,
       required: true,
     },
+    description: {
+      type: String,
+    },
     city: {
       type: String,
     },

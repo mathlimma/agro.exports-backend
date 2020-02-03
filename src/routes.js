@@ -5,6 +5,8 @@ import multerConfig from './config/multer';
 
 import ProducerAuthController from './app/controllers/ProducerAuthController';
 import EceAuthController from './app/controllers/EceAuthController';
+import ProducerController from './app/controllers/ProducerController';
+import EceController from './app/controllers/EceController';
 import AvatarController from './app/controllers/AvatarController';
 import SupplyPhotoController from './app/controllers/SupplyPhotoController';
 import SupplyController from './app/controllers/SupplyController';
@@ -42,6 +44,14 @@ class Routes {
       SupplyPhotoController.store
     );
 
+    // producer
+    this.router.get('/producer/:id', ProducerController.show);
+    this.router.put('/producer', ProducerController.update);
+
+    // Ece
+    this.router.get('/ece/:id', EceController.show);
+    this.router.put('/ece', EceController.update);
+
     // product
     this.router.post('/product', ProductController.store);
     this.router.get('/product', ProductController.index);
@@ -55,7 +65,7 @@ class Routes {
     this.router.put('/demand/:id', DemandController.update);
     this.router.delete('/demand/:id', DemandController.delete);
 
-    // producer
+    // producer_product
     this.router.post(
       '/producer/product/:product_id',
       ProducersProductController.store
