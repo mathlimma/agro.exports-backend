@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import agroMatchInitDemand from '../../agromatch';
+import { triggerSave, triggerUpdate } from './utils/trigger';
 import PointSchema from './utils/PointSchema';
 
 const DemandSchema = new Schema(
@@ -44,13 +44,8 @@ const DemandSchema = new Schema(
   { timestamps: true }
 );
 
-async function trigger(demand) {
-  const agroMatch = await agroMatchInitDemand(demand);
-  console.log(agroMatch.supplies);
-}
+DemandSchema.pre('findOneAndUpdate', triggerUpdate);
 
-DemandSchema.post('findOneAndUpdate', trigger);
-
-DemandSchema.post('save', trigger);
+DemandSchema.pre('save', triggerSave);
 
 export default model('Demand', DemandSchema);

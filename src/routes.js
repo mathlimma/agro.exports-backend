@@ -8,9 +8,9 @@ import EceAuthController from './app/controllers/EceAuthController';
 import AvatarController from './app/controllers/AvatarController';
 import SupplyPhotoController from './app/controllers/SupplyPhotoController';
 import SupplyController from './app/controllers/SupplyController';
-import ProductController from './app/controllers/ProductController';
 import DemandController from './app/controllers/DemandController';
 import ProducersProductController from './app/controllers/ProducersProductController';
+import DemandSuppliesController from './app/controllers/DemandSuppliesController';
 
 const upload = multer(multerConfig);
 
@@ -41,9 +41,13 @@ class Routes {
       upload.array('file', 10),
       SupplyPhotoController.store
     );
-    this.router.post('/product', ProductController.store);
-    this.router.get('/product', ProductController.index);
+
     this.router.post('/supply', SupplyController.store);
+    this.router.put('/supply/:id', SupplyController.update);
+    this.router.get('/supply/:id', SupplyController.show);
+
+    this.router.post('/supply', SupplyController.store);
+
     this.router.post('/demand', DemandController.store);
     this.router.put('/demand/:id', DemandController.update);
     this.router.post(
@@ -51,6 +55,10 @@ class Routes {
       ProducersProductController.store
     );
     this.router.get('/producer/product', ProducersProductController.index);
+    this.router.get(
+      '/demand/:demand_id/supplies',
+      DemandSuppliesController.index
+    );
   }
 }
 
