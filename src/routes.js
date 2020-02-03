@@ -8,6 +8,7 @@ import EceAuthController from './app/controllers/EceAuthController';
 import ProducerController from './app/controllers/ProducerController';
 import EceController from './app/controllers/EceController';
 import AvatarController from './app/controllers/AvatarController';
+import NegociationController from './app/controllers/NegociationController';
 import SupplyPhotoController from './app/controllers/SupplyPhotoController';
 import SupplyController from './app/controllers/SupplyController';
 import ProductController from './app/controllers/ProductController';
@@ -71,6 +72,16 @@ class Routes {
       ProducersProductController.store
     );
     this.router.get('/producer/product', ProducersProductController.index);
+
+    // negociation
+    this.router.put(
+      '/negociation/producer/:producer_id',
+      NegociationController.pushDemandId
+    );
+    this.router.delete(
+      '/negociation/producer/:producer_id',
+      NegociationController.deleteDemandId
+    );
   }
 }
 
