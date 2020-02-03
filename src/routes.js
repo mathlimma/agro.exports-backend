@@ -11,9 +11,10 @@ import AvatarController from './app/controllers/AvatarController';
 import NegociationController from './app/controllers/NegociationController';
 import SupplyPhotoController from './app/controllers/SupplyPhotoController';
 import SupplyController from './app/controllers/SupplyController';
-import ProductController from './app/controllers/ProductController';
 import DemandController from './app/controllers/DemandController';
+import ProductController from './app/controllers/ProductController';
 import ProducersProductController from './app/controllers/ProducersProductController';
+import DemandSuppliesController from './app/controllers/DemandSuppliesController';
 
 const upload = multer(multerConfig);
 
@@ -59,12 +60,18 @@ class Routes {
 
     // supply
     this.router.post('/supply', SupplyController.store);
+    this.router.put('/supply/:id', SupplyController.update);
+    this.router.get('/supply/:id', SupplyController.show);
 
     // demand
     this.router.get('/demand/:id', DemandController.show);
     this.router.post('/demand', DemandController.store);
     this.router.put('/demand/:id', DemandController.update);
     this.router.delete('/demand/:id', DemandController.delete);
+    this.router.get(
+      '/demand/:demand_id/supplies',
+      DemandSuppliesController.index
+    );
 
     // producer_product
     this.router.post(
