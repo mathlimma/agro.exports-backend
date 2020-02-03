@@ -39,6 +39,9 @@ const EceSchema = new Schema(
       ref: 'File',
       default: null,
     },
+    push_token: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

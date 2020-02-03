@@ -33,7 +33,23 @@ class DemandController {
   }
 
   async show(req, res) {
-    const demand = await Demand.findByIdAndDelete(req.params.id);
+    const demand = await Demand.findById(req.params.id)
+      .populate({
+        path: 'ece_id',
+        model: 'Ece',
+        populate: {
+          path: 'avatar_id',
+          model: 'File',
+        },
+      })
+      .populate({
+        path: 'product_id',
+        model: 'Product',
+        populate: {
+          path: 'photo_id',
+          model: 'File',
+        },
+      });
     return res.json(demand);
   }
 
