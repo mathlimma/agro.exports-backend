@@ -11,6 +11,10 @@ const ProductSchema = new Schema(
       type: Number,
       default: 0,
     },
+    photo_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'File',
+    },
   },
   { timestamps: true }
 );

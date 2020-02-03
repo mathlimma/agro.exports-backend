@@ -37,6 +37,12 @@ const ProducerSchema = new Schema(
       ref: 'File',
       default: null,
     },
+    demands_id: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Demand',
+      },
+    ],
     products_id: [{ type: Schema.Types.ObjectId, ref: 'Products' }],
   },
   { timestamps: true }
