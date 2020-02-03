@@ -32,6 +32,16 @@ class DemandController {
     return res.json(demand);
   }
 
+  async show(req, res) {
+    const demand = await Demand.findByIdAndDelete(req.params.id);
+    return res.json(demand);
+  }
+
+  async delete(req, res) {
+    await Demand.findByIdAndDelete(req.params.id);
+    return res.json({ success: true });
+  }
+
   async update(req, res) {
     const { latitude = null, longitude = null } = req.body;
     let data = null;

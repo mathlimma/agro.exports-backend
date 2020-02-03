@@ -16,6 +16,9 @@ const EceSchema = new Schema(
       unique: true,
       required: true,
     },
+    description: {
+      type: String,
+    },
     city: {
       type: String,
     },
