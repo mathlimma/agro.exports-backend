@@ -12,6 +12,7 @@ import NegociationController from './app/controllers/NegociationController';
 import SupplyPhotoController from './app/controllers/SupplyPhotoController';
 import SupplyController from './app/controllers/SupplyController';
 import DemandController from './app/controllers/DemandController';
+import ProducerDemandsController from './app/controllers/ProducerDemandsController';
 import ProductController from './app/controllers/ProductController';
 import ProducersProductController from './app/controllers/ProducersProductController';
 import DemandSuppliesController from './app/controllers/DemandSuppliesController';
@@ -79,6 +80,13 @@ class Routes {
       ProducersProductController.store
     );
     this.router.get('/producer/product', ProducersProductController.index);
+
+    // producer_demands
+    this.router.get(
+      '/producer/demand/:demand_id',
+      ProducerDemandsController.show
+    );
+    this.router.get('/producer/demand', ProducerDemandsController.index);
 
     // negociation
     this.router.put(

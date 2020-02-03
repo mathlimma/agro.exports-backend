@@ -1,6 +1,6 @@
 import Ece from '../models/Ece';
 
-class ProducerController {
+class EceController {
   async show(req, res) {
     const ece = await Ece.findById(req.params.id);
 
@@ -23,4 +23,4 @@ class ProducerController {
   }
 }
 
-export default new ProducerController();
+export default new EceController();
