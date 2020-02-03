@@ -41,11 +41,21 @@ class Routes {
       upload.array('file', 10),
       SupplyPhotoController.store
     );
+
+    // product
     this.router.post('/product', ProductController.store);
     this.router.get('/product', ProductController.index);
+
+    // supply
     this.router.post('/supply', SupplyController.store);
+
+    // demand
+    this.router.get('/demand/:id', DemandController.show);
     this.router.post('/demand', DemandController.store);
     this.router.put('/demand/:id', DemandController.update);
+    this.router.delete('/demand/:id', DemandController.delete);
+
+    // producer
     this.router.post(
       '/producer/product/:product_id',
       ProducersProductController.store
