@@ -5,9 +5,9 @@ class AgroMatchController {
   async init(req, res) {
     const demand = await Demand.findById(req.params.demand_id);
 
-    if (demand === null) return res.json({ error: 'Demanda não encontrada' });
-    await AgroMatchInitDemand(demand);
-
+    const agromatch = await AgroMatchInitDemand(demand);
+    demand.supplies_id = agromatch.supplies;
+    await demand.save();
     return res.json({ success: true });
   }
 }

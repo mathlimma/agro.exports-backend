@@ -25,6 +25,8 @@ class ProducerAuthController {
         name: producer.name,
         email: producer.email,
         cpf: producer.cpf,
+        tel: producer.tel,
+        sex: producer.sex,
         avatar_url: producer.avatar_id ? producer.avatar_id.url : null,
       },
       token: producer.generateToken(),

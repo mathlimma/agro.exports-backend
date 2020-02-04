@@ -1,7 +1,6 @@
 import agroMatchInitDemand from '../../../agromatch';
 
 export async function triggerSave(next) {
-  console.log('save');
   const agroMatch = await agroMatchInitDemand(this);
 
   this.supplies_id = agroMatch.supplies;

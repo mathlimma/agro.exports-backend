@@ -44,7 +44,7 @@ const DemandSchema = new Schema(
   { timestamps: true }
 );
 
-DemandSchema.pre('findOneAndUpdate', triggerUpdate);
+DemandSchema.post('findOneAndUpdate', triggerUpdate);
 
 DemandSchema.pre('save', triggerSave);
 

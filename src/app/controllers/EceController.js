@@ -14,13 +14,6 @@ class EceController {
 
     return res.json(ece);
   }
-
-  // given a jwt web token returns the specific user
-  async userByToken(req, res) {
-    const products = await Ece.find({});
-
-    return res.json(products);
-  }
 }
 
 export default new EceController();

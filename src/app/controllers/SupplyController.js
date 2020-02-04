@@ -3,14 +3,7 @@ import Producer from '../models/Producer';
 
 class SupplyController {
   async store(req, res) {
-    const {
-      price,
-      description,
-      longitude,
-      latitude,
-      product_id,
-      active,
-    } = req.body;
+    const { price, description, longitude, latitude, product_id } = req.body;
     const location = {
       type: 'Point',
       coordinates: [longitude, latitude],
@@ -27,7 +20,6 @@ class SupplyController {
       producer_id: req.userId,
       location,
       product_id,
-      active,
     });
 
     const producer = await Producer.findById(req.userId);

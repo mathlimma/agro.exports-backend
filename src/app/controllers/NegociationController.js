@@ -7,6 +7,7 @@ import Notification from '../models/Notification';
 class NegociationController {
   async store(req, res) {
     const supply = await Supply.findById(req.params.supply_id);
+
     const producer = await Producer.findById(supply.producer_id);
 
     producer.demands_id.push(req.body.demand_id);

@@ -25,6 +25,7 @@ class EceAuthController {
         name: ece.name,
         email: ece.email,
         cnpj: ece.cnpj,
+        tel: ece.tel,
         avatar_url: ece.avatar_id ? ece.avatar_id.url : null,
       },
       token: ece.generateToken(),

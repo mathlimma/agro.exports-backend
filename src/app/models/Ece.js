@@ -32,7 +32,6 @@ const EceSchema = new Schema(
       trim: true,
       required: true,
       minlength: 8,
-      select: false,
     },
     avatar_id: {
       type: Schema.Types.ObjectId,
