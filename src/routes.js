@@ -12,6 +12,7 @@ import NegociationController from './app/controllers/NegociationController';
 import SupplyPhotoController from './app/controllers/SupplyPhotoController';
 import SupplyController from './app/controllers/SupplyController';
 import DemandController from './app/controllers/DemandController';
+import AgroMatchController from './app/controllers/AgroMatchController';
 import ProducerDemandsController from './app/controllers/ProducerDemandsController';
 import ProductController from './app/controllers/ProductController';
 import ProducersProductController from './app/controllers/ProducersProductController';
@@ -97,6 +98,9 @@ class Routes {
       '/negociation/producer/:producer_id',
       NegociationController.deleteDemandId
     );
+
+    // Agromatch
+    this.router.post('/agromatch/:demand_id', AgroMatchController.init);
   }
 }
 
