@@ -12,6 +12,7 @@ import NegociationController from './app/controllers/NegociationController';
 import SupplyPhotoController from './app/controllers/SupplyPhotoController';
 import SupplyController from './app/controllers/SupplyController';
 import DemandController from './app/controllers/DemandController';
+import AgroMatchController from './app/controllers/AgroMatchController';
 import ProducerDemandsController from './app/controllers/ProducerDemandsController';
 import ProductController from './app/controllers/ProductController';
 import ProducersProductController from './app/controllers/ProducersProductController';
@@ -83,6 +84,9 @@ class Routes {
 
     // producer_demands
     this.router.get('/producerDemands', ProducerDemandsController.index);
+
+    // Agromatch
+    this.router.post('/agromatch/:demand_id', AgroMatchController.init);
 
     // negociation
     this.router.put('/negociation/:supply_id', NegociationController.store);
