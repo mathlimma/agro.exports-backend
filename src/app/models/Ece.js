@@ -42,6 +42,10 @@ const EceSchema = new Schema(
     push_token: {
       type: String,
     },
+    tel: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );

@@ -2,6 +2,7 @@ import Producer from '../models/Producer';
 import Supply from '../models/Supply';
 import Ece from '../models/Ece';
 import Demand from '../models/Demand';
+import Notification from '../models/Notification';
 
 class NegociationController {
   async store(req, res) {
@@ -40,11 +41,19 @@ class NegociationController {
 
     const demand = await Demand.findById(req.body.demand_id);
     const ece = await Ece.findById(demand.ece_id);
-    // Lancar notificacao
+    let description = null;
+
     if (accept) {
-      // Notifica
+      description = `${producer.name} aceitou seu pedido de negociação`;
     } else {
+      description = `${producer.name} recusou seu pedido de negociação`;
     }
+
+    let data = { description };
+    if (accept) data = { ...data, tel: producer.tel };
+
+    const notification = await Notification.create(data);
+    await notification.sendNotification(ece.push_token);
 
     return res.json({ success: true });
   }
