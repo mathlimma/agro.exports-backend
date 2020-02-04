@@ -1,15 +1,28 @@
 import Producer from '../models/Producer';
 
 class ProducerDemandsController {
-  async show(req, res) {
-    const producer = await Producer.findById(req.params.id);
-
-    return res.json(producer);
-  }
-
   async index(req, res) {
-    const producer = await Producer.findByIdAndUpdate(req.userId, req.body, {
-      new: true,
+    const producer = await Producer.findById(req.userId).populate({
+      path: 'demands_id',
+      model: 'Demand',
+      populate: [
+        {
+          path: 'ece_id',
+          model: 'Ece',
+          populate: {
+            path: 'avatar_id',
+            model: 'File',
+          },
+        },
+        {
+          path: 'product_id',
+          model: 'Product',
+          populate: {
+            path: 'photo_id',
+            model: 'File',
+          },
+        },
+      ],
     });
 
     return res.json(producer);

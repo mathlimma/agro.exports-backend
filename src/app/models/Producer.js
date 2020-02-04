@@ -48,6 +48,14 @@ const ProducerSchema = new Schema(
       },
     ],
     products_id: [{ type: Schema.Types.ObjectId, ref: 'Products' }],
+    sex: {
+      type: String,
+      enum: ['female', 'male'],
+      required: true,
+    },
+    push_token: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

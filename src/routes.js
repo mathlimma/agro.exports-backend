@@ -83,24 +83,14 @@ class Routes {
     this.router.get('/producer/product', ProducersProductController.index);
 
     // producer_demands
-    this.router.get(
-      '/producer/demand/:demand_id',
-      ProducerDemandsController.show
-    );
-    this.router.get('/producer/demand', ProducerDemandsController.index);
-
-    // negociation
-    this.router.put(
-      '/negociation/producer/:producer_id',
-      NegociationController.pushDemandId
-    );
-    this.router.delete(
-      '/negociation/producer/:producer_id',
-      NegociationController.deleteDemandId
-    );
+    this.router.get('/producerDemands', ProducerDemandsController.index);
 
     // Agromatch
     this.router.post('/agromatch/:demand_id', AgroMatchController.init);
+
+    // negociation
+    this.router.put('/negociation/:supply_id', NegociationController.store);
+    this.router.delete('/negociation/:supply_id', NegociationController.delete);
   }
 }
 
