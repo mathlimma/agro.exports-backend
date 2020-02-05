@@ -19,9 +19,6 @@ const EceSchema = new Schema(
     description: {
       type: String,
     },
-    city: {
-      type: String,
-    },
     cnpj: {
       type: String,
       required: true,
@@ -43,6 +40,10 @@ const EceSchema = new Schema(
     },
     tel: {
       type: Number,
+      required: true,
+    },
+    city: {
+      type: String,
       required: true,
     },
   },

@@ -18,9 +18,7 @@ const ProducerSchema = new Schema(
     description: {
       type: String,
     },
-    city: {
-      type: String,
-    },
+
     cpf: {
       type: String,
       unique: true,
@@ -57,6 +55,10 @@ const ProducerSchema = new Schema(
     },
     tel: {
       type: Number,
+      required: true,
+    },
+    city: {
+      type: String,
       required: true,
     },
   },
