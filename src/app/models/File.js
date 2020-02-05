@@ -11,6 +11,7 @@ const FileSchema = new Schema(
 );
 
 FileSchema.virtual('url').get(function() {
+  console.log(process.env.APP_URL);
   return `${process.env.APP_URL}/files/${this.name}`;
 });
 

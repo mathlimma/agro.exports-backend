@@ -15,10 +15,11 @@ import DemandController from './app/controllers/DemandController';
 import AgroMatchController from './app/controllers/AgroMatchController';
 import ProducerDemandsController from './app/controllers/ProducerDemandsController';
 import ProductController from './app/controllers/ProductController';
-import ProducersProductController from './app/controllers/ProducersProductController';
+import ProducerSuppliesController from './app/controllers/ProducerSuppliesController';
 import DemandSuppliesController from './app/controllers/DemandSuppliesController';
 import ProductPhotoController from './app/controllers/ProductPhotoController';
 import PushTokenController from './app/controllers/PushTokenController';
+import TokenController from './app/controllers/TokenController';
 
 const upload = multer(multerConfig);
 
@@ -55,6 +56,12 @@ class Routes {
       SupplyPhotoController.store
     );
 
+    // producer_supplies
+    this.router.get('/producer/supplies', ProducerSuppliesController.show);
+
+    // producer_demands
+    this.router.get('/producer/demands', ProducerDemandsController.index);
+
     // producer
     this.router.get('/producer/:id', ProducerController.show);
     this.router.put('/producer', ProducerController.update);
@@ -82,16 +89,6 @@ class Routes {
       DemandSuppliesController.index
     );
 
-    // producer_product
-    this.router.post(
-      '/producer/product/:product_id',
-      ProducersProductController.store
-    );
-    this.router.get('/producer/product', ProducersProductController.index);
-
-    // producer_demands
-    this.router.get('/producerDemands', ProducerDemandsController.index);
-
     // Agromatch
     this.router.post('/agromatch/:demand_id', AgroMatchController.init);
 
@@ -101,6 +98,8 @@ class Routes {
 
     // push
     this.router.put('/push/:token', PushTokenController.store);
+    //
+    this.router.get('/token', TokenController.show);
   }
 }
 
