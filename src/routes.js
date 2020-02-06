@@ -20,6 +20,7 @@ import DemandSuppliesController from './app/controllers/DemandSuppliesController
 import ProductPhotoController from './app/controllers/ProductPhotoController';
 import PushTokenController from './app/controllers/PushTokenController';
 import TokenController from './app/controllers/TokenController';
+import EceDemandsController from './app/controllers/EceDemandsController';
 
 const upload = multer(multerConfig);
 
@@ -66,6 +67,9 @@ class Routes {
     this.router.get('/producer/:id', ProducerController.show);
     this.router.put('/producer', ProducerController.update);
 
+    // Ece demands
+    this.router.get('/ece/demands', EceDemandsController.show);
+
     // Ece
     this.router.get('/ece/:id', EceController.show);
     this.router.put('/ece', EceController.update);
@@ -94,7 +98,7 @@ class Routes {
 
     // negociation
     this.router.put('/negociation/:supply_id', NegociationController.store);
-    this.router.delete('/negociation/:supply_id', NegociationController.delete);
+    this.router.delete('/negociation', NegociationController.delete);
 
     // push
     this.router.put('/push/:token', PushTokenController.store);

@@ -66,7 +66,15 @@ class SupplyController {
           model: 'File',
         },
       })
-      .populate({ path: 'photos', model: 'File' });
+      .populate({ path: 'photos', model: 'File' })
+      .populate({
+        path: 'product_id',
+        model: 'Product',
+        populate: {
+          path: 'photo_id',
+          model: 'File',
+        },
+      });
 
     return res.json(supply);
   }

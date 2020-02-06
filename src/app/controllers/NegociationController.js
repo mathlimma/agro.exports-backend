@@ -18,9 +18,6 @@ class NegociationController {
 
   async delete(req, res) {
     const { accept } = req.query;
-    const supply = await Supply.findById(req.params.supply_id);
-
-    if (!supply) return res.json({ error: 'Oferta nao existe' });
 
     if (req.type !== 'Producer')
       return res.json({
@@ -54,7 +51,7 @@ class NegociationController {
     if (accept) data = { ...data, tel: producer.tel };
 
     const notification = await Notification.create(data);
-    await notification.sendNotification(ece.push_token);
+    if (ece.push_token) await notification.sendNotification(ece.push_token);
 
     return res.json({ success: true });
   }

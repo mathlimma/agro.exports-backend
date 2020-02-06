@@ -17,7 +17,7 @@ const SupplySchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: 'File',
-        required: true,
+ 
       },
     ],
     price: {
