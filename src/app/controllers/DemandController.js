@@ -9,6 +9,7 @@ class DemandController {
       price,
       kg_amount,
       max_distance_km,
+      description,
     } = req.body;
     const location = {
       type: 'Point',
@@ -27,6 +28,7 @@ class DemandController {
       location,
       product_id,
       ece_id: req.userId,
+      description,
     });
 
     return res.json(demand);

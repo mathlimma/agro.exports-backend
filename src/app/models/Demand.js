@@ -34,6 +34,9 @@ const DemandSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    description: {
+      type: String,
+    },
     supplies_id: [
       {
         type: Schema.Types.ObjectId,
