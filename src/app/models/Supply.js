@@ -17,7 +17,6 @@ const SupplySchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: 'File',
- 
       },
     ],
     price: {
@@ -29,7 +28,7 @@ const SupplySchema = new Schema(
     },
     location: {
       type: PointSchema,
-      index: '2dsphere',
+      index: { type: '2dsphere', sparse: false },
     },
     active: {
       type: Boolean,

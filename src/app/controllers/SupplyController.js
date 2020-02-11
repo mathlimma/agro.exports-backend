@@ -12,7 +12,6 @@ class SupplyController {
       active,
     } = req.body;
     const location = {
-      type: 'Point',
       coordinates: [longitude, latitude],
     };
 
@@ -44,7 +43,6 @@ class SupplyController {
     let data = null;
 
     const location = {
-      type: 'Point',
       coordinates: [longitude, latitude],
     };
 

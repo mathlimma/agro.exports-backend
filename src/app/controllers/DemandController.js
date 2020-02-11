@@ -12,7 +12,6 @@ class DemandController {
       description,
     } = req.body;
     const location = {
-      type: 'Point',
       coordinates: [longitude, latitude],
     };
 
@@ -65,7 +64,6 @@ class DemandController {
     let data = null;
 
     const location = {
-      type: 'Point',
       coordinates: [longitude, latitude],
     };
 

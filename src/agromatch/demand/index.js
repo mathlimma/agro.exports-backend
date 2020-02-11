@@ -2,6 +2,7 @@ import Supply from '../../app/models/Supply';
 
 class AgroMatchDemand {
   constructor(demand) {
+    console.log(demand);
     this.demand = demand;
     this.supplies = null;
   }

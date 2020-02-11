@@ -4,7 +4,7 @@ import AgroMatchInitDemand from '../../agromatch';
 class AgroMatchController {
   async init(req, res) {
     const demand = await Demand.findById(req.params.demand_id);
-
+    console.log(demand);
     const agromatch = await AgroMatchInitDemand(demand);
     demand.supplies_id = agromatch.supplies;
     await demand.save();

@@ -24,7 +24,7 @@ const DemandSchema = new Schema(
     },
     location: {
       type: PointSchema,
-      index: '2dsphere',
+      index: { type: '2dsphere', sparse: false },
     },
     max_distance_km: {
       type: Number,
