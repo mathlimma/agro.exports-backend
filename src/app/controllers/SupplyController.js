@@ -64,21 +64,26 @@ class SupplyController {
 
   async show(req, res) {
     const supply = await Supply.findById(req.params.id)
+      .select('price product_id photos producer_id ')
       .populate({
         path: 'producer_id',
         model: 'Producer',
+        select: 'avatar_id name description city',
         populate: {
           path: 'avatar_id',
           model: 'File',
+          select: 'name url',
         },
       })
       .populate({ path: 'photos', model: 'File' })
       .populate({
         path: 'product_id',
         model: 'Product',
+        select: 'name photo_id',
         populate: {
           path: 'photo_id',
           model: 'File',
+          select: 'name url',
         },
       });
 

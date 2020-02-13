@@ -6,15 +6,20 @@ class ProducerSuppliesController {
       return res.status(401).send({
         error: 'Apenas produtores podem ter seus produtos cadastrados',
       });
-    console.log(req.userId);
-    const supplies = await Supply.find({ producer_id: req.userId }).populate({
-      path: 'product_id',
-      model: 'Product',
-      populate: {
-        path: 'photo_id',
-        model: 'File',
-      },
-    });
+
+    const supplies = await Supply.find({ producer_id: req.userId })
+      .select('product_id active createdAt price description')
+      .sort('-createdAt')
+      .populate({
+        path: 'product_id',
+        model: 'Product',
+        select: 'photo_id name',
+        populate: {
+          path: 'photo_id',
+          model: 'File',
+          select: 'name url',
+        },
+      });
     return res.json(supplies);
   }
 }

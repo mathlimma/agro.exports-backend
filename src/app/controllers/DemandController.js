@@ -35,20 +35,27 @@ class DemandController {
 
   async show(req, res) {
     const demand = await Demand.findById(req.params.id)
+      .select(
+        'price ece_id product_id description kg_amount max_distance_km createdAt updatedAt'
+      )
       .populate({
         path: 'ece_id',
         model: 'Ece',
+        select: 'tel name avatar_id description city',
         populate: {
           path: 'avatar_id',
           model: 'File',
+          select: 'url name',
         },
       })
       .populate({
         path: 'product_id',
         model: 'Product',
+        select: 'photo_id name',
         populate: {
           path: 'photo_id',
           model: 'File',
+          select: 'url name',
         },
       });
     return res.json(demand);

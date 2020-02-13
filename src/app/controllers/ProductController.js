@@ -8,10 +8,14 @@ class ProductController {
   }
 
   async index(req, res) {
-    const products = await Product.find({}).populate({
-      path: 'photo_id',
-      model: 'File',
-    });
+    const products = await Product.find({})
+      .select('name createdAt')
+      .sort('name')
+      .populate({
+        path: 'photo_id',
+        model: 'File',
+        select: 'name url',
+      });
 
     return res.json(products);
   }
